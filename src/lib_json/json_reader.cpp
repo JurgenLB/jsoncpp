@@ -753,6 +753,7 @@ bool Reader::addErrorAndRecover(const String& message, Token& token,
 
 Value& Reader::currentValue() { return *(nodes_.top()); }
 
+// ‘Reader’ is deprecated: Use CharReader and CharReaderBuilder instead.
 Reader::Char Reader::getNextChar() {
   if (current_ == end_)
     return 0;
@@ -807,17 +808,18 @@ String Reader::getFormattedErrorMessages() const {
   return formattedMessage;
 }
 
-std::vector<Reader::StructuredError> Reader::getStructuredErrors() const {
-  std::vector<Reader::StructuredError> allErrors;
-  for (const auto& error : errors_) {
-    Reader::StructuredError structured;
-    structured.offset_start = error.token_.start_ - begin_;
-    structured.offset_limit = error.token_.end_ - begin_;
-    structured.message = error.message_;
-    allErrors.push_back(structured);
-  }
-  return allErrors;
-}
+// ‘Reader’ is deprecated: Use CharReader and CharReaderBuilder instead.
+//std::vector<Reader::StructuredError> Reader::getStructuredErrors() const {
+//  std::vector<Reader::StructuredError> allErrors;
+//  for (const auto& error : errors_) {
+//    Reader::StructuredError structured;
+//    structured.offset_start = error.token_.start_ - begin_;
+//    structured.offset_limit = error.token_.end_ - begin_;
+//    structured.message = error.message_;
+//    allErrors.push_back(structured);
+//  }
+//  return allErrors;
+//}
 
 bool Reader::pushError(const Value& value, const String& message) {
   ptrdiff_t const length = end_ - begin_;
