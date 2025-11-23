@@ -129,6 +129,7 @@ static int parseAndSaveValueTree(const Json::String& input,
                                  const Json::String& kind,
                                  const Json::Features& features, bool parseOnly,
                                  Json::Value* root, bool use_legacy) {
+  if (!use_legacy) {
     Json::CharReaderBuilder builder;
 
     builder.settings_["allowComments"] = features.allowComments_;
@@ -146,7 +147,19 @@ static int parseAndSaveValueTree(const Json::String& input,
       std::cerr << "Failed to parse " << kind << " file: " << std::endl
                 << errors << std::endl;
       return 1;
-    
+    }
+
+    // We may instead check the legacy implementation (to ensure it doesn't
+    // randomly get broken).
+  } else {
+    Json::Reader reader(features);
+    const bool parsingSuccessful =
+        reader.parse(input.data(), input.data() + input.size(), *root);
+    if (!parsingSuccessful) {
+      std::cerr << "Failed to parse " << kind << " file: " << std::endl
+                << reader.getFormatedErrorMessages() << std::endl;
+      return 1;
+    }
   }
 
   if (!parseOnly) {
