@@ -69,4 +69,6 @@ jobs:
         with:
           coveralls-send: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          args: --exclude 'src_test_lib_json_.*' --exclude '.*jsontest\.h.*'
+          excludes: |
+            src_test_lib_json_.*
+            .*jsontest\.h.*
