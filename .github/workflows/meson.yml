@@ -81,7 +81,4 @@ jobs:
           excludes: |
             src_test_lib_json_.*
             .*jsontest\.h.*
-          add-dirs: |
-            /tmp/gcov/coverage_target1
-            /tmp/gcov/coverage_target2
-            /tmp/gcov/coverage_target3
+          root: build
