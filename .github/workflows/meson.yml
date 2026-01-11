@@ -31,6 +31,9 @@ jobs:
           meson-version: 1.5.1
           ninja-version: 1.11.1.1
           action: test
+        env:
+          GCOV_PREFIX: /tmp/gcov/runner-${{ matrix.os }}
+          GCOV_PREFIX_STRIP: 4
 
   meson-coverage:
     runs-on: ubuntu-latest
@@ -57,6 +60,9 @@ jobs:
           ninja-version: 1.11.1.1
           setup-options: -Db_coverage=true
           action: test
+        env:
+          GCOV_PREFIX: /tmp/gcov/coverage
+          GCOV_PREFIX_STRIP: 4
 
       - name: generate code coverage report
         uses: threeal/gcovr-action@v1.0.0
