@@ -57,7 +57,6 @@ jobs:
           ninja-version: 1.11.1.1
           builddir: build_${{ matrix.target }}
           setup-options: >
-            # If applicable to build shared/static libraries separately
             -Db_coverage=true
             -Ddefault_library=both
           action: build 
@@ -83,7 +82,6 @@ jobs:
             src_test_lib_json_.*
             .*jsontest\.h.*
           add-dirs: |
-            # Add coverage data directories for all targets
             /tmp/gcov/coverage_target1
             /tmp/gcov/coverage_target2
             /tmp/gcov/coverage_target3
