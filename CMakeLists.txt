@@ -12,7 +12,7 @@
 # CMake versions greater than the JSONCPP_NEWEST_VALIDATED_POLICIES_VERSION policies will
 # continue to generate policy warnings "CMake Warning (dev)...Policy CMP0XXX is not set:"
 #
-set(JSONCPP_OLDEST_VALIDATED_POLICIES_VERSION "3.8.0")
+set(JSONCPP_OLDEST_VALIDATED_POLICIES_VERSION "3.10.0")
 set(JSONCPP_NEWEST_VALIDATED_POLICIES_VERSION "3.13.2")
 cmake_minimum_required(VERSION ${JSONCPP_OLDEST_VALIDATED_POLICIES_VERSION})
 if("${CMAKE_VERSION}" VERSION_LESS "${JSONCPP_NEWEST_VALIDATED_POLICIES_VERSION}")
@@ -40,9 +40,9 @@ foreach(pold "") # Currently Empty
     endif()
 endforeach()
 
-# Build the library with C++11 standard support, independent from other including
+# Build the library with C++17 standard support, independent from other including
 # software which may use a different CXX_STANDARD or CMAKE_CXX_STANDARD.
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
